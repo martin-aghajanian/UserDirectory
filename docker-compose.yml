@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres-primary:
+    image: postgres:16
+    container_name: user_dir_primary
+    environment:
+      POSTGRES_DB: user_directory
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata_primary:/var/lib/postgresql/data
+
+  postgres-replica:
+    image: postgres:16
+    container_name: user_dir_replica
+    environment:
+      POSTGRES_DB: user_directory
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata_replica:/var/lib/postgresql/data
+
+volumes:
+  pgdata_primary:
+  pgdata_replica:
