@@ -24,6 +24,7 @@ services:
       - "5433:5432"
     volumes:
       - pgdata_replica:/var/lib/postgresql/data
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
 
 volumes:
   pgdata_primary:
